@@ -42,3 +42,4 @@ UserInterfaceState.xcuserstate
 # .docker env
 .docker/env/*.env
 typings/cordova-typings.d.ts
+package-lock.json
