@@ -1,0 +1,12 @@
+<head-nav [chainNetwork]="chainNetwork"></head-nav>
+
+<ion-content>
+  <ion-grid fixed>
+    <div class="page-content">
+      <h2>Latest Blocks</h2>
+      <latest-blocks [showTimeAs]="'age'" [showAllBlocksButton]="true" [chainNetwork]="chainNetwork" #latestBlocks>
+      </latest-blocks>
+    </div>
+  </ion-grid>
+</ion-content>
+<footer [chainNetwork]="chainNetwork"></footer>
