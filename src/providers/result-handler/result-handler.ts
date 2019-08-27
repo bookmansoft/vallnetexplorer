@@ -6,10 +6,10 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Logger } from '../logger/logger';
-import { mergeMap } from 'rxjs/operators';
-import { of } from "rxjs/observable/of";
 import { Observable, } from 'rxjs/Observable';
+import { of } from "rxjs/observable/of";
+import { mergeMap } from 'rxjs/operators';
+import { Logger } from '../logger/logger';
 
 @Injectable()
 export class HttpResultInterceptor implements HttpInterceptor {
