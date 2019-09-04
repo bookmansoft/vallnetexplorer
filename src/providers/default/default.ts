@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+ import { Injectable } from '@angular/core';
+ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class DefaultProvider {
@@ -18,7 +19,8 @@ export class DefaultProvider {
     '%NUM_BLOCKS%': '15'
   };
 
-  constructor() {}
+  constructor() {     
+  }
 
   public getDefault(str: string): string {
     return this.defaults[str] !== undefined ? this.defaults[str] : str;
