@@ -14,7 +14,7 @@ export class DefaultProvider {
     // '%NETWORK%': process.env.NETWORK || 'mainnet',
     // '%NUM_BLOCKS%': process.env.NUM_BLOCKS || '15'
     '%CHAIN%': 'BTC',
-    '%API_PREFIX%': '/api',
+    '%API_PREFIX%': environment.API_PREFIX || '/api',
     '%NETWORK%': 'mainnet',
     '%NUM_BLOCKS%': '15'
   };
