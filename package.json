@@ -24,12 +24,12 @@
     "singleQuote": true
   },
   "scripts": {
-    "clean": "ionic-app-scripts clean",    
-    "build:prod": "cp ./src/environments/environment.prod.ts ./src/environments/environment.ts && npm run ionic:build --prod",
+    "clean": "ionic-app-scripts clean",
+    "build:prod": "ncp ./src/environments/environment.prod.ts ./src/environments/environment.ts && npm run ionic:build --prod",
     "serve:prod": "npm run clean && npm run build:prod && npm run serve",
     "serve": "serve www",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "cp ./src/environments/environment.dev.ts ./src/environments/environment.ts && ionic-app-scripts serve --port 8200",
+    "ionic:serve": "ncp ./src/environments/environment.dev.ts ./src/environments/environment.ts && ionic-app-scripts serve --port 8200",
     "postinstall": "./node_modules/.bin/webdriver-manager update --gecko false",
     "start": "npm run ionic:serve",
     "test": "ng test --watch=false --code-coverage --no-progress",
@@ -71,6 +71,7 @@
     "karma-coverage-istanbul-reporter": "1.2.1",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "0.2.2",
+    "ncp": "^2.0.0",
     "prettier": "^1.15.3",
     "serve": "^10.1.1",
     "serve-static": "1.13.2",
