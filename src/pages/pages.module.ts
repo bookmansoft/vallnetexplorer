@@ -8,6 +8,7 @@ import { LatestBlocksComponentModule } from '../components/latest-blocks/latest-
 import { LatestTransactionsComponentModule } from '../components/latest-transactions/latest-transactions.module';
 import { BlocksPageModule } from '../pages/blocks/blocks.module';
 import { BroadcastTxPageModule } from './broadcast-tx/broadcast-tx.module';
+import { CustomProducerPageModule } from './custom-producer/custom-producer.module';
 import { HomePageModule } from './home/home.module';
 import { MessagesPageModule } from './messages/messages.module';
 
@@ -17,6 +18,7 @@ import { MessagesPageModule } from './messages/messages.module';
     IonicModule,
     ComponentsModule,
     BlocksPageModule,
+    CustomProducerPageModule,
     BroadcastTxPageModule,
     MessagesPageModule,
     HomePageModule,

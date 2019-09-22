@@ -7,6 +7,7 @@ import { AddressProvider } from '../providers/address/address';
 import { ApiProvider } from '../providers/api/api';
 import { BlocksProvider } from '../providers/blocks/blocks';
 import { CurrencyProvider } from '../providers/currency/currency';
+import { CpsProvider } from '../providers/custcom-producers/custom-producers';
 import { DefaultProvider } from '../providers/default/default';
 import { HttpErrorInterceptor } from '../providers/error-handler/error-handler';
 import { Logger } from '../providers/logger/logger';
@@ -44,6 +45,7 @@ import { InsightApp } from './app.component';
     ApiProvider,
     CurrencyProvider,
     BlocksProvider,
+    CpsProvider,
     TxsProvider,
     DefaultProvider,
     PriceProvider,

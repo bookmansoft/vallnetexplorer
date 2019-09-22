@@ -13,6 +13,8 @@ import {
  *
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
+ * 用在Block-detail页面中,显示该Block包含的Tx
+ * 用在transaction页面中,显示该tx包含的Tx(复用)
  */
 @Component({
   selector: 'transaction',

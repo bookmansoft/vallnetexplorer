@@ -1,0 +1,105 @@
+<head-nav [chainNetwork]="chainNetwork"></head-nav>
+<ion-content>
+  <ion-grid fixed>
+
+    <div class="page-content">
+
+      <loader *ngIf="loading" [type]="'title'"></loader>
+
+      <error [message]="errorMessage" *ngIf="!loading && errorMessage && confirmations !== -3 "></error>
+
+      <div *ngIf="(!loading && !errorMessage) || confirmations === -3">
+        <h1 ion-text>
+          CP          
+        </h1>
+
+        <p class="item-hash">
+          <b>Cp Cid</b> {{ cp.cid }} <button [copyToClipboard]="cp.cid">
+            <ion-icon md="md-copy"></ion-icon>
+          </button>
+        </p>
+
+        <h2>Summary</h2>
+
+        <error [message]="errorMessage" *ngIf="!loading && errorMessage"></error>
+
+        <ion-list class="list--summary">
+          <ion-item>
+            Name
+            <ion-note item-end>
+              {{ cp.name }} 
+            </ion-note>
+          </ion-item>
+          <ion-item>
+            Url
+            <ion-note item-end>
+              {{ cp.url }} 
+            </ion-note>
+          </ion-item>
+          <ion-item>
+            IP
+            <ion-note item-end>
+              {{ cp.ip }} 
+            </ion-note>
+          </ion-item>
+          <ion-item>
+            Grate
+            <ion-note item-end>
+              {{ cp.grate }} 
+            </ion-note>
+          </ion-item>          
+        </ion-list>
+
+        <h2>Stock</h2>
+          
+
+        <ion-list *ngIf="cp.stock" class="list--summary">
+            <ion-item>
+                当前发行高度
+              <ion-note item-end>
+                {{ cp.stock.hHeight }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                当前发行数量
+              <ion-note item-end>
+                {{ cp.stock.hSum }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                当前发行价格
+              <ion-note item-end>
+                {{ cp.stock.hPrice }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                当前发行奖励
+              <ion-note item-end>
+                {{ cp.stock.hBonus }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                首次发行高度
+              <ion-note item-end>
+                {{ cp.stock.height }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                总发行数量
+              <ion-note item-end>
+                {{ cp.stock.sum }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                平均发行价格
+              <ion-note item-end>
+                {{ cp.stock.price }} 
+              </ion-note>
+            </ion-item>
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-grid>
+</ion-content>
+<footer [chainNetwork]="chainNetwork"></footer>
