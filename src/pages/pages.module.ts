@@ -11,6 +11,7 @@ import { BroadcastTxPageModule } from './broadcast-tx/broadcast-tx.module';
 import { CustomProducerPageModule } from './custom-producer/custom-producer.module';
 import { HomePageModule } from './home/home.module';
 import { MessagesPageModule } from './messages/messages.module';
+import { PropertyPageModule } from './property/property.module';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { MessagesPageModule } from './messages/messages.module';
     HeadNavComponentModule,
     LatestTransactionsComponentModule,
     LatestBlocksComponentModule,
-    ErrorComponentModule
+    ErrorComponentModule,
+    PropertyPageModule
   ],
   exports: [
     // CustomComponent,

@@ -1,0 +1,86 @@
+<head-nav [chainNetwork]="chainNetwork"></head-nav>
+<ion-content>
+  <ion-grid fixed>
+
+    <div class="page-content">
+
+      <loader *ngIf="loading" [type]="'title'"></loader>
+
+      <error [message]="errorMessage" *ngIf="!loading && errorMessage "></error>
+
+      <div *ngIf="(!loading && !errorMessage)">
+        <h1 ion-text>
+          Prop          
+        </h1>
+
+        <p class="item-hash">
+          <b>Prop id</b> {{ prop.pid }} <button [copyToClipboard]="prop.pid">
+            <ion-icon md="md-copy"></ion-icon>
+          </button>
+        </p>
+
+        <h2>Summary</h2>
+
+        <error [message]="errorMessage" *ngIf="!loading && errorMessage"></error>
+
+        <ion-list class="list--summary">
+          <ion-item>
+            Cid
+            <ion-note item-end>
+              {{ prop.cid }} 
+            </ion-note>
+          </ion-item>
+          <ion-item>
+            Oid
+            <ion-note item-end>
+              {{ prop.oid }} 
+            </ion-note>
+          </ion-item>
+          <ion-item>
+            Gold
+            <ion-note item-end>
+              {{ prop.gold }} 
+            </ion-note>
+          </ion-item>
+          <ion-item>
+            Height
+            <ion-note item-end>
+              {{ prop.height }} 
+            </ion-note>
+          </ion-item>          
+        </ion-list>
+
+        <h2 *ngIf="prop.bid.fixed != 0">Bid</h2>          
+
+        <ion-list *ngIf="prop.bid.fixed != 0" class="list--summary">
+            <ion-item>
+                一口价
+              <ion-note item-end>
+                {{ prop.bid.fixed }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                拍卖周期
+              <ion-note item-end>
+                {{ prop.bid.period }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                当前买方出价
+              <ion-note item-end>
+                {{ prop.bid.value }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                当前买方地址
+              <ion-note item-end>
+                {{ prop.bid.address }} 
+              </ion-note>
+            </ion-item>            
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-grid>
+</ion-content>
+<footer [chainNetwork]="chainNetwork"></footer>

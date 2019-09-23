@@ -41,8 +41,8 @@ export interface ResultCps {
 }
 
 
-export interface AppCp {  
-}
+// export interface AppCp {  
+// }
 
 @Injectable()
 export class CpsProvider {
@@ -52,11 +52,10 @@ export class CpsProvider {
     private apiProvider: ApiProvider
   ) {}
   
-  public toAppCp(cp: ApiCp): AppCp {
-    return {
-      
-    };
-  }  
+  // public toAppCp(cp: ApiCp): AppCp {
+  //   return {      
+  //   };
+  // }  
 
   public getCps(
     chainNetwork: ChainNetwork,
@@ -68,7 +67,7 @@ export class CpsProvider {
     }
     const url = `${this.apiProvider.getUrlPrefix()}/${chainNetwork.chain}/${
       chainNetwork.network
-    }/cpss/${queryString}`;
+    }/cps/${queryString}`;
     return this.httpClient.get<ResultCps>(url);
   }
 
