@@ -46,8 +46,8 @@
     "@angular/platform-browser-dynamic": "5.2.10",
     "angular2-moment": "1.7.1",
     "angular2-qrcode": "2.0.1",
-    "bitcore-lib": "^8.6.0",
-    "bitcore-lib-cash": "^8.6.0",
+    "bitcore-lib": "^8.8.0",
+    "bitcore-lib-cash": "^8.8.0",
     "bs58": "^4.0.1",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
@@ -58,7 +58,7 @@
   "devDependencies": {
     "@angular/cli": "7.3.4",
     "@angular/compiler-cli": "5.2.10",
-    "@ionic/app-scripts": "3.2.3",
+    "@ionic/app-scripts": "3.2.4",
     "@types/jasmine": "2.5.41",
     "@types/lodash": "4.14.104",
     "@types/node": "7.0.4",
@@ -72,7 +72,7 @@
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "0.2.2",
     "ncp": "^2.0.0",
-    "prettier": "^1.15.3",
+    "prettier": "^1.18.2",
     "serve": "^10.1.1",
     "serve-static": "1.13.2",
     "ts-node": "3.0.4",
@@ -81,7 +81,7 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-eslint-rules": "4.1.1",
     "typescript": "2.6.2",
-    "webdriver-manager": "^12.1.1"
+    "webdriver-manager": "^12.1.7"
   },
   "engines": {
     "node": ">=8"
