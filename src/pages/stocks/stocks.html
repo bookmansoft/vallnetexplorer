@@ -1,0 +1,81 @@
+<head-nav [chainNetwork]="chainNetwork"></head-nav>
+<ion-content>
+  <ion-grid fixed>
+
+    <div class="page-content">
+
+      <loader *ngIf="loading" [type]="'title'"></loader>
+
+      <error [message]="errorMessage" *ngIf="!loading && errorMessage "></error>
+
+      <div *ngIf="(!loading && !errorMessage)">
+        <h1 ion-text>
+          Stock Accounts          
+        </h1>
+
+        <p class="item-hash">
+          <b>Cid id</b> {{ cid }}  <button [copyToClipboard]="cid">
+              <ion-icon md="md-copy"></ion-icon>
+            </button>         
+        </p>
+
+        <h2>List</h2>
+
+        <error [message]="errorMessage" *ngIf="!loading && errorMessage"></error>
+
+        <!-- 这么嵌套嵌套不好看啊,以后再优化显示 -->
+        <ion-list *ngFor="let stockAccount of stockAccoutList" class="list--summary">
+          <h2>权证</h2>   
+          <ion-item>
+                权证厂商
+              <ion-note item-end>
+                {{ stockAccount.cid }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                权证地址
+              <ion-note item-end>
+                {{ stockAccount.addr }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                权证数量
+              <ion-note item-end>
+                {{ stockAccount.price }} 
+              </ion-note>
+            </ion-item>
+            <ion-item>
+                账号序号
+              <ion-note item-end>
+                {{ stockAccount.seq }} 
+              </ion-note>
+            </ion-item>
+
+            <h2 *ngIf="stockAccount.stock.sum != 0">Bid</h2>          
+
+            <ion-list *ngIf="stockAccount.stock.sum != 0" class="list--summary">
+                <ion-item>
+                    出售数量
+                  <ion-note item-end>
+                    {{ stockAccount.stock.sum }} 
+                  </ion-note>
+                </ion-item>
+                <ion-item>
+                    出售价格
+                  <ion-note item-end>
+                    {{ stockAccount.stock.price }} 
+                  </ion-note>
+                </ion-item>
+                <ion-item>
+                    出售周期
+                  <ion-note item-end>
+                    {{ stockAccount.stock.period }} 
+                  </ion-note>
+                </ion-item>                       
+            </ion-list> 
+        </ion-list>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>
+<footer [chainNetwork]="chainNetwork"></footer>

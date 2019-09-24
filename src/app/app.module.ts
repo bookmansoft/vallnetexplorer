@@ -16,6 +16,7 @@ import { PropProvider } from '../providers/property/property';
 import { RedirProvider } from '../providers/redir/redir';
 import { HttpResultInterceptor } from '../providers/result-handler/result-handler';
 import { SearchProvider } from '../providers/search/search';
+import { StockProvider } from '../providers/stock/stock';
 import { TxsProvider } from '../providers/transactions/transactions';
 import { InsightApp } from './app.component';
 
@@ -54,7 +55,8 @@ import { InsightApp } from './app.component';
     RedirProvider,
     Logger,
     AddressProvider,
-    PropProvider
+    PropProvider,
+    StockProvider
   ]
 })
 export class AppModule {}

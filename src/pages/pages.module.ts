@@ -12,6 +12,7 @@ import { CustomProducerPageModule } from './custom-producer/custom-producer.modu
 import { HomePageModule } from './home/home.module';
 import { MessagesPageModule } from './messages/messages.module';
 import { PropertyPageModule } from './property/property.module';
+import { StocksPageModule } from './stocks/stocks.module';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import { PropertyPageModule } from './property/property.module';
     LatestTransactionsComponentModule,
     LatestBlocksComponentModule,
     ErrorComponentModule,
-    PropertyPageModule
+    PropertyPageModule,
+    StocksPageModule
   ],
   exports: [
     // CustomComponent,
