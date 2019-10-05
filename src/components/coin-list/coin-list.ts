@@ -26,7 +26,8 @@ export class CoinListComponent implements OnInit {
   constructor(
     private addrProvider: AddressProvider,
     private txsProvider: TxsProvider,
-    private events: Events
+    private events: Events,
+    private logger: Logger,
   ) {}
 
   public ngOnInit(): void {

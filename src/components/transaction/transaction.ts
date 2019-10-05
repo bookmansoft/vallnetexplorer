@@ -9,6 +9,8 @@ import {
   TxsProvider
 } from '../../providers/transactions/transactions';
 
+import { Logger } from '../../providers/logger/logger';
+
 /**
  * Generated class for the TransactionComponent component.
  *
@@ -38,7 +40,8 @@ export class TransactionComponent implements OnInit {
     public apiProvider: ApiProvider,
     public txProvider: TxsProvider,
     public redirProvider: RedirProvider,
-    public blocksProvider: BlocksProvider
+    public blocksProvider: BlocksProvider,
+    public logger: Logger,
   ) {}
 
   public ngOnInit(): void {

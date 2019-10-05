@@ -1,15 +1,15 @@
 <ion-header no-border>
   <ion-navbar color="brand" hideBackButton>
     <ion-title (click)="goHome(chainNetwork)" class="logo-header">Gamegold-Insight</ion-title>
-    <!-- <button class="search-button" ion-button clear icon-only (click)="toggleSearch()">
+    <button class="search-button" ion-button clear icon-only (click)="toggleSearch()">
       <ion-icon name="search" [color]="!showSearch ? 'light' : 'dark'"></ion-icon>
-    </button> -->
-    <!-- <form class="search" (ngSubmit)="search($event)">
+    </button>
+    <form class="search" (ngSubmit)="search($event)">
       <input dir="auto" placeholder="{{ 'Search for block, transaction or address' }}" [(ngModel)]="q" name="search"
         autocomplete="off" autocorrect="off" spellcheck="false">
     </form>
 
-    <ion-buttons>
+    <!-- <ion-buttons>
       <button ion-button (click)="changeCurrency($event)">
         <ion-icon name="logo-bitcoin" *ngIf="currencyProvider?.currencySymbol !== 'USD'"></ion-icon>
         <ion-icon name="logo-usd" *ngIf="currencyProvider?.currencySymbol === 'USD'"></ion-icon>

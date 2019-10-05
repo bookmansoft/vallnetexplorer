@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as bitcoreLib from 'bitcore-lib';
 import * as bitcoreLibCash from 'bitcore-lib-cash';
+import * as gamegold from 'gamegold-cordova';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiProvider, ChainNetwork } from '../api/api';
+import { Logger } from '../logger/logger';
 
 @Injectable()
 export class SearchProvider {
@@ -14,7 +16,8 @@ export class SearchProvider {
 
   constructor(
     private apiProvider: ApiProvider,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private logger: Logger
   ) {}
 
   public search(
@@ -80,18 +83,30 @@ export class SearchProvider {
     const coin = this.config.chain;
     const network = this.config.network;
     const addr = this.extractAddress(inputValue);
-    if (addr.charAt(0) === 'C' || addr.charAt(0) === 'H') {
-      return false;
-    } else if (coin.toLowerCase() === 'btc' && network === 'mainnet') {
-      return this.isValidBitcoinMainnetAddress(addr);
-    } else if (coin.toLowerCase() === 'btc' && network === 'testnet') {
-      return this.isValidBitcoinTestnetAddress(addr);
-    } else if (coin.toLowerCase() === 'bch' && network === 'mainnet') {
-      return (
-        this.isValidBitcoinCashMainnetAddress(addr) ||
-        this.isValidBitcoinCashLegacyMainnetAddress(addr)
-      );
+    this.logger.info('nav.addr:' +addr); 
+
+    try{
+      const address = gamegold.address.fromString(addr); 
+      this.logger.info('valid addr'+ JSON.stringify(address));
+      return true;
     }
+    catch(error){
+      this.logger.info("error addr:"+ error)
+      return false;
+    }
+
+    // if (addr.charAt(0) === 'C' || addr.charAt(0) === 'H') {
+    //   return false;
+    // } else if (coin.toLowerCase() === 'btc' && network === 'mainnet') {
+    //   return this.isValidBitcoinMainnetAddress(addr);
+    // } else if (coin.toLowerCase() === 'btc' && network === 'testnet') {
+    //   return this.isValidBitcoinTestnetAddress(addr);
+    // } else if (coin.toLowerCase() === 'bch' && network === 'mainnet') {
+    //   return (
+    //     this.isValidBitcoinCashMainnetAddress(addr) ||
+    //     this.isValidBitcoinCashLegacyMainnetAddress(addr)
+    //   );
+    // }
   }
 
   private isValidBitcoinMainnetAddress(data: string): boolean {
