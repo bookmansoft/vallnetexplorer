@@ -43,8 +43,7 @@ export class StocksPage {
     this.stockProvider.getStockAccountList(this.chainNetwork, {cid: this.cid, page: 1}).subscribe(
       data => {
         if(data.list.length > 0){
-          this.stockAccoutList = data.list;
-          console.log(JSON.stringify(this.stockAccoutList));
+          this.stockAccoutList = data.list;         
           this.loading = false;
         }
         else{

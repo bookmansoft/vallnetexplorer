@@ -5,14 +5,16 @@ import { ApiProvider, ChainNetwork } from '../../providers/api/api';
 import { CurrencyProvider } from '../../providers/currency/currency';
 import { BlocksProvider } from '../blocks/blocks';
 
+// 并未调用CoinAPI
 interface CoinsApiResponse {
   inputs: ApiCoin[];
   outputs: ApiCoin[];
 }
 export interface ResultTxs {
   pagesTotal: number;
-  txs: ApiTx[];
+  txs: AppTx[];
 }
+// 不用目前都是直接返回APPTx
 export interface ApiTx {
   address: string;
   chain: string;
@@ -103,8 +105,8 @@ export interface AppTx {
   version: number;
   locktime: number;
   isCoinBase: boolean;
-  vin: any[];
-  vout: any[];
+  vin: AppInput[];
+  vout: AppOutput[];
   confirmations: number;
   time: number;
   valueOut: number;
@@ -132,6 +134,7 @@ export class TxsProvider {
     return fee;
   }
 
+  // 实际并没有调用,目前直接返回AppTx
   public toAppTx(tx: ApiTx): AppTx {
     return {
       txid: tx.txid,
@@ -184,15 +187,16 @@ export class TxsProvider {
     return this.httpClient.get<AppTx>(url);
   }
 
-  public getCoins(
-    txId: string,
-    chainNetwork: ChainNetwork
-  ): Observable<CoinsApiResponse> {
-    const url = `${this.apiProvider.getUrlPrefix()}/${chainNetwork.chain}/${
-      chainNetwork.network
-    }/tx/${txId}/coins`;
-    return this.httpClient.get<CoinsApiResponse>(url);
-  }
+  // 目前不提供这个方法
+  // public getCoins(
+  //   txId: string,
+  //   chainNetwork: ChainNetwork
+  // ): Observable<CoinsApiResponse> {
+  //   const url = `${this.apiProvider.getUrlPrefix()}/${chainNetwork.chain}/${
+  //     chainNetwork.network
+  //   }/tx/${txId}/coins`;
+  //   return this.httpClient.get<CoinsApiResponse>(url);
+  // }
 
   public getConfirmations(
     blockheight: number,

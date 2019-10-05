@@ -4,7 +4,8 @@ import { BlocksProvider } from '../../providers/blocks/blocks';
 import { CurrencyProvider } from '../../providers/currency/currency';
 import { RedirProvider } from '../../providers/redir/redir';
 import {
-  ApiCoin,
+  AppInput,
+  AppOutput,
   TxsProvider
 } from '../../providers/transactions/transactions';
 
@@ -44,6 +45,7 @@ export class TransactionComponent implements OnInit {
     this.showCoins ? this.getCoins() : this.getConfirmations();
   }
 
+  // 实际也是调用getTx方法进行展示,并不是仅仅获取coins
   public getCoins(): void {
     this.txProvider
       // getCoins(this.tx.txid, this.chainNetwork)
@@ -56,12 +58,20 @@ export class TransactionComponent implements OnInit {
       });
   }
 
-  public getAddress(v: ApiCoin): string {
-    if (v.address === 'false') {
+  public getInputAddress(v: AppInput): string {
+    if (!v.scriptSig || !v.scriptSig.addresses) {
       return 'Unparsed address';
     }
+    // 返回的是地址数组(多签,这里只取第一个地址)
+    return v.scriptSig.addresses[0];
+  }
 
-    return v.address;
+  public getOutputAddress(v: AppOutput): string {
+    if (!v.scriptPubKey || !v.scriptPubKey.addresses) {
+      return 'Unparsed address';
+    }
+    // 返回的是地址数组(多签,这里只取第一个地址)  
+    return v.scriptPubKey.addresses[0];
   }
 
   public getConfirmations() {
