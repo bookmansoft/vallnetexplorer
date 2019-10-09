@@ -114,6 +114,7 @@ export interface AppTx {
   fee: number;
   blockheight: number;
   blocktime: number;
+  clsData: any;
 }
 
 @Injectable()

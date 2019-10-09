@@ -55,6 +55,10 @@ export class TransactionPage {
     this.txProvider.getTx(this.txId, this.chainNetwork).subscribe(
       data => {
         // this.tx = this.txProvider.toAppTx(data);
+        // 对coinbase交易特殊处理
+        if (!!data.clsData && data.clsData.oper === "coinbase"){
+          data.clsData = data.clsData.data;
+        }
         this.tx = data;
         this.loading = false;
         this.txProvider
@@ -65,7 +69,7 @@ export class TransactionPage {
                 'This transaction is invalid and will never confirm, because some of its inputs are already spent.';
             }
             this.confirmations = confirmations;
-          });
+          });        
         // Be aware that the tx component is loading data into the tx object
       },
       err => {

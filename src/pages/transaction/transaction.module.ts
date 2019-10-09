@@ -6,10 +6,11 @@ import { HeadNavComponentModule } from '../../components/head-nav/head-nav.modul
 import { LoaderComponentModule } from '../../components/loader/loader.module';
 import { TransactionComponentModule } from '../../components/transaction/transaction.module';
 import { CopyToClipboardModule } from '../../directives/copy-to-clipboard/copy-to-clipboard.module';
+import { PropertiesPipe } from '../../pipes/properties/properties';
 import { TransactionPage } from './transaction';
 
 @NgModule({
-  declarations: [TransactionPage],
+  declarations: [TransactionPage, PropertiesPipe],
   imports: [
     IonicPageModule.forChild(TransactionPage),
     TransactionComponentModule,
