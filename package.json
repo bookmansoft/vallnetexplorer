@@ -46,8 +46,6 @@
     "@angular/platform-browser-dynamic": "5.2.10",
     "angular2-moment": "1.7.1",
     "angular2-qrcode": "2.0.1",
-    "bitcore-lib": "^8.8.0",
-    "bitcore-lib-cash": "^8.8.0",
     "bs58": "^4.0.1",
     "gamegold-cordova": "^1.6.30",
     "ionic-angular": "3.9.2",

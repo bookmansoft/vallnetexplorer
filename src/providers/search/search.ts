@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import * as bitcoreLib from 'bitcore-lib';
-import * as bitcoreLibCash from 'bitcore-lib-cash';
 import * as gamegold from 'gamegold-cordova';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
@@ -69,7 +67,7 @@ export class SearchProvider {
     }
   }
 
-  private isValidBlockOrTx(inputValue): boolean {
+  public isValidBlockOrTx(inputValue): boolean {
     const regexp = /^[0-9a-fA-F]{64}$/;
     if (regexp.test(inputValue)) {
       return true;
@@ -78,7 +76,7 @@ export class SearchProvider {
     }
   }
 
-  private isValidAddress(inputValue): boolean {
+  public isValidAddress(inputValue): boolean {
     this.config = this.apiProvider.getConfig();
     const coin = this.config.chain;
     const network = this.config.network;
@@ -95,33 +93,6 @@ export class SearchProvider {
       return false;
     }
 
-    // if (addr.charAt(0) === 'C' || addr.charAt(0) === 'H') {
-    //   return false;
-    // } else if (coin.toLowerCase() === 'btc' && network === 'mainnet') {
-    //   return this.isValidBitcoinMainnetAddress(addr);
-    // } else if (coin.toLowerCase() === 'btc' && network === 'testnet') {
-    //   return this.isValidBitcoinTestnetAddress(addr);
-    // } else if (coin.toLowerCase() === 'bch' && network === 'mainnet') {
-    //   return (
-    //     this.isValidBitcoinCashMainnetAddress(addr) ||
-    //     this.isValidBitcoinCashLegacyMainnetAddress(addr)
-    //   );
-    // }
-  }
-
-  private isValidBitcoinMainnetAddress(data: string): boolean {
-    return !!bitcoreLib.Address.isValid(data, 'mainnet');
-  }
-  private isValidBitcoinTestnetAddress(data: string): boolean {
-    return !!bitcoreLib.Address.isValid(data, 'testnet');
-  }
-
-  private isValidBitcoinCashLegacyMainnetAddress(data: string): boolean {
-    return !!bitcoreLib.Address.isValid(data, 'mainnet');
-  }
-
-  private isValidBitcoinCashMainnetAddress(data: string): boolean {
-    return !!bitcoreLibCash.Address.isValid(data, 'mainnet');
   }
 
   private isValidBlockIndex(inputValue): boolean {
@@ -130,7 +101,7 @@ export class SearchProvider {
 
   private extractAddress(address: string): string {
     const extractedAddress = address
-      .replace(/^(bitcoincash:|bchtest:|bitcoin:)/i, '')
+      .replace(/^(gamegold:)/i, '')
       .replace(/\?.*/, '');
     return extractedAddress || address;
   }

@@ -4,9 +4,8 @@ import { IonicPage, NavParams } from 'ionic-angular';
 import { ApiProvider, ChainNetwork } from '../../providers/api/api';
 import { CurrencyProvider } from '../../providers/currency/currency';
 import { PriceProvider } from '../../providers/price/price';
+import { SearchProvider } from '../../providers/search/search';
 
-import * as bitcoreLib from 'bitcore-lib';
-import * as bitcoreLibCash from 'bitcore-lib-cash';
 
 @Injectable()
 @IonicPage({
@@ -30,7 +29,8 @@ export class MessagesPage {
     public navParams: NavParams,
     private apiProvider: ApiProvider,
     private priceProvider: PriceProvider,
-    private currencyProvider: CurrencyProvider
+    private currencyProvider: CurrencyProvider,
+    private searchProvider: SearchProvider
   ) {
     const chain: string = navParams.get('chain');
     const network: string = navParams.get('network');
@@ -66,27 +66,9 @@ export class MessagesPage {
       this.error = 'Invalid Address';
       return;
     }
-
-    const bitcore =
-      this.chainNetwork.chain === 'BTC' ? bitcoreLib : bitcoreLibCash;
-    const message = new bitcore.Message(values.message);
-
-    try {
-      if (message.verify(values.address, values.signature)) {
-        this.success = 'Message verified!';
-      } else {
-        this.error = message.error;
-      }
-    } catch (e) {
-      this.error = e;
-    }
   }
 
-  private isAddressValid(addr): boolean {
-    const bitcore =
-      this.chainNetwork.chain === 'BTC' ? bitcoreLib : bitcoreLibCash;
-    return !!bitcore.Address.isValid(addr, this.chainNetwork.network)
-      ? true
-      : false;
+  private isAddressValid(addr): boolean {    
+    return this.searchProvider.isValidAddress(addr);
   }
 }
