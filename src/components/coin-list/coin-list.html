@@ -1,10 +1,10 @@
 <loader *ngIf="loading" [type]="'tx-list'"></loader>
 
-<div *ngIf="!loading">
+<div *ngIf="!loadingTx && !loadingHeight">
   <ion-grid>
     <ion-row *ngFor="let tx of txs; let i = index">
       <ion-col col-12 *ngIf="i < limit && (tx.spentTxid !== '' || tx.mintTxid)">
-        <coin [coin]="tx" [chainNetwork]="chainNetwork"></coin>
+        <coin [coin]="tx" [chainNetwork]="chainNetwork" [currentHeight]="currentHeight"></coin>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="limit < txs.length">

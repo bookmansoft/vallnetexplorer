@@ -13,6 +13,8 @@ export class CoinComponent {
   public coin;
   @Input()
   public chainNetwork: ChainNetwork;
+  @Input()
+  public currentHeight: number;
 
   public confirmations: number;
 
@@ -24,16 +26,12 @@ export class CoinComponent {
   ) {}
 
   // tslint:disable-next-line:use-life-cycle-interface
-  ngAfterViewInit() {
+  ngOnInit() {
     this.getConfirmations();
   }
 
   public getConfirmations() {
-    this.txProvider
-      .getConfirmations(this.coin.height, this.chainNetwork)
-      .subscribe(confirmations => {
-        this.confirmations = confirmations;
-      });
+    this.confirmations = this.coin.height? this.currentHeight-this.coin.height+1 : 0;
   }
 
   public goToTx(txId: string): void {

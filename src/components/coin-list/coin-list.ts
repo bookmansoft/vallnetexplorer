@@ -3,6 +3,7 @@ import { Events } from 'ionic-angular';
 import _ from 'lodash';
 import { AddressProvider } from '../../providers/address/address';
 import { ChainNetwork } from '../../providers/api/api';
+import { BlocksProvider} from '../../providers/blocks/blocks';
 import { Logger } from '../../providers/logger/logger';
 import { TxsProvider } from '../../providers/transactions/transactions';
 
@@ -19,12 +20,15 @@ export class CoinListComponent implements OnInit {
   public txs: any = [];
   public coins: any = [];
   public showTransactions: boolean;
-  public loading;
-  public limit = 10;
+  public loadingTx: boolean;
+  public loadingHeight: boolean;
+  public limit = 100;
   public chunkSize = 100;
+  public currentHeight = 0;
 
   constructor(
     private addrProvider: AddressProvider,
+    private blocksProvider: BlocksProvider,
     private txsProvider: TxsProvider,
     private events: Events,
     private logger: Logger,
@@ -32,28 +36,36 @@ export class CoinListComponent implements OnInit {
 
   public ngOnInit(): void {
     if (this.txs && this.txs.length === 0) {
-      this.loading = true;
-      this.addrProvider.getAddressActivity(this.addrStr).subscribe(
+      this.loadingTx = true;
+      this.loadingHeight = true;
+      // 增加获取当前块高度
+      this.blocksProvider.getCurrentHeight(this.chainNetwork).subscribe(data => {
+        this.currentHeight =  data.height;
+        this.loadingHeight = false;
+      });
+      this.addrProvider.getAddressActivity(this.addrStr, this.chainNetwork).subscribe(
         data => {
           const formattedData = data.map(this.txsProvider.toAppCoin);
           this.txs = this.processData(formattedData);
           this.showTransactions = true;
-          this.loading = false;
+          this.loadingTx = false;
           this.events.publish('CoinList', { length: data.length });
         },
         () => {
-          this.loading = false;
+          this.loadingTx = false;
           this.showTransactions = false;
         }
       );
     }
+    
   }
 
   processData(data) {
     const txs = [];
     data.forEach(tx => {
       const { mintHeight, mintTxid, value, spentHeight, spentTxid } = tx;
-      txs.push({ height: spentHeight, spentTxid, value });
+      // 目前
+      // txs.push({ height: spentHeight, spentTxid, value });
       txs.push({ height: mintHeight, mintTxid, value });
     });
     return txs;
@@ -61,7 +73,8 @@ export class CoinListComponent implements OnInit {
 
   public loadMore(infiniteScroll) {
     this.limit += this.chunkSize;
-    this.chunkSize *= 2;
+    // this.chunkSize *= 2;
     infiniteScroll.complete();
   }
+  
 }

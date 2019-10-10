@@ -29,13 +29,15 @@ export class AddressProvider {
     return this.httpClient.get<ApiAddr>(
       `${this.apiProvider.getUrlPrefix()}/${chainNetwork.chain}/${
         chainNetwork.network
-      }/address/${addrStr}/balance`
+      }/addr/${addrStr}/balance`
     );
   }
 
-  public getAddressActivity(addrStr?: string): Observable<ApiCoin[]> {
+  public getAddressActivity(addrStr?: string, chainNetwork?: ChainNetwork): Observable<ApiCoin[]> {
     return this.httpClient.get<ApiCoin[]>(
-      `${this.apiProvider.getUrl()}/address/${addrStr}/txs?limit=1000`
+      `${this.apiProvider.getUrlPrefix()}/${chainNetwork.chain}/${
+        chainNetwork.network
+      }/addr/${addrStr}/utxo?from=0&to=10`
     );
   }
 }

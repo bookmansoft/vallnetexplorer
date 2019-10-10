@@ -51,7 +51,7 @@ export class SearchProvider {
   private searchAddr(addr: string): Observable<{ addr: any }> {
     const address = this.extractAddress(addr);
     return this.httpClient
-      .get<{ addr: any }>(`${this.apiURL}/address/${address}`)
+      .get<{ addr: any }>(`${this.apiURL}/addr/${address}`)
       .pipe(map(res => ({ addr: res })));
   }
 

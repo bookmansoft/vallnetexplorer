@@ -95,7 +95,9 @@ export class TransactionComponent implements OnInit {
     });
   }
 
-  public goToAddress(addrStr: string): void {
+  public goToAddress(v: AppOutput): void {
+    // 返回的是地址数组(多签,这里只取第一个地址)         
+    const addrStr = v.scriptPubKey.addresses[0];
     this.redirProvider.redir('address', {
       addrStr,
       chain: this.chainNetwork.chain,

@@ -38,7 +38,7 @@ export interface ApiTx {
   version: number;
 }
 
-export interface ApiCoin {
+export interface ApiCoinOld {
   txid: string;
   mintTxid: string;
   coinbase: boolean;
@@ -52,6 +52,17 @@ export interface ApiCoin {
   mintHeight: number;
   spentHeight: number;
   value: number;
+}
+
+export interface ApiCoin {
+  txid: string; 
+  vout: number;
+  address: string;
+  scriptPubKey: string;
+  amount: number;
+  satoshis: number;
+  height: number;
+  confirmations: number;  
 }
 
 export interface AppCoin {
@@ -151,19 +162,21 @@ export class TxsProvider {
       vin: [], // populated when coins are retrieved
       vout: [], // populated when coins are retrieved
       valueOut: tx.value,
-      version: tx.version
+      version: tx.version,
+      clsData: null
     };
   }
 
+  // 注意,目前没有返回coin的花费信息
   public toAppCoin(coin: ApiCoin): AppCoin {
     return {
       txid: coin.txid,
-      mintTxid: coin.mintTxid,
-      mintHeight: coin.mintHeight,
-      spentHeight: coin.spentHeight,
-      valueOut: coin.value,
-      value: coin.value,
-      spentTxid: coin.spentTxid
+      mintTxid: coin.txid,
+      mintHeight: coin.height,
+      spentHeight: 0,
+      valueOut: coin.vout,
+      value: coin.amount,
+      spentTxid: null
     };
   }
 
