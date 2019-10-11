@@ -5,7 +5,7 @@
       <ion-icon name="search" [color]="!showSearch ? 'light' : 'dark'"></ion-icon>
     </button>
     <form class="search" (ngSubmit)="search($event)">
-      <input dir="auto" placeholder="{{ 'Search for block, transaction or address' }}" [(ngModel)]="q" name="search"
+      <input dir="auto" placeholder="{{ 'Search for block, transaction, address, cp, or prop' }}" [(ngModel)]="q" name="search"
         autocomplete="off" autocorrect="off" spellcheck="false">
     </form>
 
@@ -26,7 +26,7 @@
 
   <ion-toolbar class="mobile-searchbar" fixed [hidden]="!showSearch">
     <form (ngSubmit)="search($event)">
-      <ion-searchbar #searchbar placeholder="{{ 'Search for block, transaction or address' }}" [(ngModel)]="q"
+      <ion-searchbar #searchbar placeholder="{{ 'Search for block, transaction, address, cp, or prop' }}" [(ngModel)]="q"
         name="search"></ion-searchbar>
     </form>
   </ion-toolbar>

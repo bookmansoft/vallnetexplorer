@@ -116,6 +116,21 @@ export class HeadNavComponent implements OnInit {
               type: 'blockHash'
             };
           }
+          // 由于道具查询返回的是一个列表
+          else if (value.propResult && value.propResult.count > 0) {
+            result = {
+              redirTo: 'property',
+              params: value.propResult.list.Length === 1 ? value.propResult.list[0].cid : this.q,
+              type: 'pid'
+            };
+          }
+          else if (value.cp) {
+            result = {
+              redirTo: 'custom-producer',
+              params: value.cp.cid,
+              type: 'cpId'
+            };
+          }
           return result;
         },
         { redirTo: '', params: '', type: '' }
