@@ -72,8 +72,10 @@
             <ion-item *ngFor="let property of tx.clsData | properties">
               data.{{ property }}  
               <ion-note item-end>
-                <div class="unlocking-script" >
-                  <p> {{ tx.clsData[property] | json }} </p>
+                <div class="unlocking-script" >                 
+                  <p>
+                    {{ tx.clsData[property] | attributes }}
+                  </p>
                 </div>
               </ion-note>
             </ion-item>

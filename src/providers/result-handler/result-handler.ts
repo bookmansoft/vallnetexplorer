@@ -32,7 +32,13 @@ export class HttpResultInterceptor implements HttpInterceptor {
       const update = {body: event.body.result};
       // debug: 打印出所有的响应
       this.logger.info("http result: "+ JSON.stringify(update));
-      return of(event.clone(update));      
+      if (update.body !== null){
+        return of(event.clone(update));      
+      }
+      else{
+        const errorMessage =`Error: return null Result Data`;
+        throw errorMessage;
+      }
     }
     return of(event);
   }
