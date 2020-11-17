@@ -11,6 +11,26 @@ npm i
 npm start
 ```
 
+在文件[www/ionic.config.json]中配置远程节点地址
+
+```json
+{
+  "name": "vallnetexplorer",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://114.116.107.218:2102/public/"
+    }
+  ],
+  "hooks": {}
+}
+```
+## 部署须知
+
 1. 如果出现"[npm] sh: ionic-app-scripts: command not found"
 
 ```sh
